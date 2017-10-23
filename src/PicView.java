@@ -2,8 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 
 class PicView {
-    public static void run(String runpath,String filename){
-        //褰㈠紡鍙傛暟锛氱粷瀵硅矾寰勶紝鏂囦欢鍚嶇О
+    	public static void run(String runpath,String filename)
+    	{
+        //形式参数：绝对路径，文件名称
         PicViewFrame picframe = new PicViewFrame(runpath,filename);
         //picframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         picframe.setVisible(true);
@@ -25,21 +26,21 @@ class PicViewFrame extends JFrame {
             e.printStackTrace();
         }
 
-        //use a label to display a image
+        //use a label to display a image 
         pic = new JLabel();
         add(pic, BorderLayout.CENTER);
 
         String name = runpath+"\\"+filename+".png";
         //System.out.println(name);
         ImageIcon icon = new ImageIcon(name);
-        // 鎸夌収鍥剧墖澶у皬绛夋瘮缂╂斁
+        // 按照图片大小等比缩放
         int imgWidth = icon.getIconWidth();
         int imgHeight = icon.getIconHeight();
         int conWidth = getWidth();
         int conHeight = getHeight();
         int reImgWidth;
         int reImgHeight;
-        //鎸夊皬鐨勮繘琛屽浘鐗囩殑澶у皬缂╂斁
+        //按小的进行图片的大小缩放
         if (imgWidth / imgHeight >= conWidth / conHeight) {
             if (imgWidth > conWidth) {
                 reImgWidth = conWidth;
@@ -61,7 +62,7 @@ class PicViewFrame extends JFrame {
             }
         }
         reImgHeight= (int) (reImgHeight*0.55);
-        reImgWidth= (int) (reImgWidth*0.75);
+ 
         icon = new ImageIcon(icon.getImage().getScaledInstance(reImgWidth, reImgHeight, Image.SCALE_DEFAULT));
         pic.setIcon(icon);
         pic.setHorizontalAlignment(SwingConstants.CENTER);

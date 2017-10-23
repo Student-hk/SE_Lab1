@@ -1,11 +1,10 @@
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Scanner;
-
-
+//lab3 change test02
 class AdjacentEdge{
-    /*æœ‰å‘å›¾çš„é‚»æ¥è¾¹
-     *å±æ€§ï¼šé‚»æ¥è¾¹çš„å°¾é¡¶ç‚¹çš„æ£€ç´¢å€¼ï¼Œé‚»æ¥è¡¨çš„æƒé‡ï¼Œä¸‹ä¸€æ¡é‚»æ¥è¾¹çš„å¼•ç”¨
+    /*ÓĞÏòÍ¼µÄÁÚ½Ó±ß
+     *ÊôĞÔ£ºÁÚ½Ó±ßµÄÎ²¶¥µãµÄ¼ìË÷Öµ£¬ÁÚ½Ó±íµÄÈ¨ÖØ£¬ÏÂÒ»ÌõÁÚ½Ó±ßµÄÒıÓÃ
      */
     public int edgeTailIndex=0;
     public int weight=0;
@@ -13,8 +12,8 @@ class AdjacentEdge{
 }
 
 class Vertex{
-    /*æœ‰å‘å›¾çš„é¡¶ç‚¹
-     *å±æ€§ï¼šé¡¶ç‚¹å•è¯ï¼Œå‡ºåº¦è¾¹çš„æ•°ç›®ï¼Œä¸‹ä¸€æ¡è¾¹çš„å¼•ç”¨
+    /*ÓĞÏòÍ¼µÄ¶¥µã
+     *ÊôĞÔ£º¶¥µãµ¥´Ê£¬³ö¶È±ßµÄÊıÄ¿£¬ÏÂÒ»Ìõ±ßµÄÒıÓÃ
      */
     public String word;
     public int edgeNum=0;
@@ -23,21 +22,21 @@ class Vertex{
 
 
 class Graph {
-    /*æœ‰å‘å›¾
-     *å±æ€§:æœ‰å‘å›¾çš„é¡¶ç‚¹æ•°ç»„Vertex[] vertexArray
-     *     é¡¶ç‚¹ä¸ªæ•°int vertexNum
-     *æ–¹æ³•ï¼šæœ‰å‘å›¾çš„æ„é€ Graph(String[] wordSet, String[] wordArray)
-     *      æ¡¥æ¥è¯çš„æœç´¢String[] bridgeWord(String word1, String word2)
-     *      æ ¹æ®æ¡¥æ¥è¯ç”Ÿæˆæ–°æ–‡æœ¬String generateText(String text)
-     *      ä¸¤ä¸ªå•è¯çš„æœ€çŸ­è·¯å¾„int[][] shortestPath(String word1,String word2)
-     *      éšæœºè·¯å¾„String randomGraph()
+    /*ÓĞÏòÍ¼
+     *ÊôĞÔ:ÓĞÏòÍ¼µÄ¶¥µãÊı×éVertex[] vertexArray
+     *     ¶¥µã¸öÊıint vertexNum
+     *·½·¨£ºÓĞÏòÍ¼µÄ¹¹ÔìGraph(String[] wordSet, String[] wordArray)
+     *      ÇÅ½Ó´ÊµÄËÑË÷String[] bridgeWord(String word1, String word2)
+     *      ¸ù¾İÇÅ½Ó´ÊÉú³ÉĞÂÎÄ±¾String generateText(String text)
+     *      Á½¸öµ¥´ÊµÄ×î¶ÌÂ·¾¶int[][] shortestPath(String word1,String word2)
+     *      Ëæ»úÂ·¾¶String randomGraph()
      */
     public Vertex[] vertexArray;
     int vertexNum;
 
     public Graph(String[] wordSet, String[] wordArray) {
-        /*æœ‰å‘å›¾çš„æ„é€ 
-         *å½¢å¼å‚æ•°ï¼šå•è¯çš„é›†åˆæ•°ç»„ï¼Œå•è¯åŸæ¥æ¬¡åºæ•°ç»„
+        /*ÓĞÏòÍ¼µÄ¹¹Ôì
+         *ĞÎÊ½²ÎÊı£ºµ¥´ÊµÄ¼¯ºÏÊı×é£¬µ¥´ÊÔ­À´´ÎĞòÊı×é
          */
         vertexNum = wordSet.length;
         vertexArray = new Vertex[vertexNum];
@@ -45,16 +44,16 @@ class Graph {
             vertexArray[i] = new Vertex();
             vertexArray[i].word = wordSet[i];
         }
-        int vertexIndex = 0;
+        int vertexIndex = 0; 
         int nextVertexIndex = 0;
         AdjacentEdge tmpEdge;
         for (int i = 0; i < wordArray.length - 1; i++) {
-            //å¯»æ‰¾é‚»æ¥è¾¹çš„ä¸¤ä¸ªé¡¶ç‚¹ä¿¡æ¯
+            //Ñ°ÕÒÁÚ½Ó±ßµÄÁ½¸ö¶¥µãĞÅÏ¢
             for (int j = 0; j < wordSet.length; j++) {
                 if (wordSet[j].equals(wordArray[i])) {
                     vertexIndex = j;
                     vertexArray[j].edgeNum++;
-                    break;
+                    break;  
                 }
             }
             for (int j = 0; j < wordSet.length; j++) {
@@ -63,7 +62,7 @@ class Graph {
                     break;
                 }
             }
-            //æ·»åŠ é‚»æ¥è¾¹
+            //Ìí¼ÓÁÚ½Ó±ß
             AdjacentEdge curEdge;
             if (vertexArray[vertexIndex].next == null) {
                 tmpEdge = new AdjacentEdge();
@@ -94,13 +93,14 @@ class Graph {
     }
 
     public String[] bridgeWord(String word1, String word2) {
-        /*æ¡¥æ¥è¯çš„æœç´¢
-         *å½¢å¼å‚æ•°ï¼šå•è¯1ï¼Œå•è¯2
-         * è¿”å›ï¼šæ¡¥æ¥è¯çš„æ•°ç»„
+        /*ÇÅ½Ó´ÊµÄËÑË÷
+         *ĞÎÊ½²ÎÊı£ºµ¥´Ê1£¬µ¥´Ê2
+         * ·µ»Ø£ºÇÅ½Ó´ÊµÄÊı×é
          */
-        int word1Index = -1, word2Index = -1;
+        int word1Index = -1;
+        int word2Index = -1;
         String[] bridgeWords = null;
-        //æŸ¥æ‰¾æ˜¯å¦å­˜åœ¨å•è¯1å’Œå•è¯2
+        //²éÕÒÊÇ·ñ´æÔÚµ¥´Ê1ºÍµ¥´Ê2
         for (int i = 0; i < vertexNum; i++) {
             if (vertexArray[i].word.equals(word1)) {
                 word1Index = i;
@@ -113,14 +113,14 @@ class Graph {
             }
         }
         if (word1Index < 0 || word2Index < 0) {
-            //ä¸å­˜åœ¨è¿”å›null
+            //²»´æÔÚ·µ»Ønull
             return bridgeWords;
         }
         bridgeWords = new String[vertexNum];
         AdjacentEdge bridgeEdge1 = vertexArray[word1Index].next, bridgeEdge2;
         int tmpBridge;
         int bridgeWordNum = 0;
-        //æŸ¥æ‰¾æ¡¥æ¥è¯
+        //²éÕÒÇÅ½Ó´Ê
         while (bridgeEdge1 != null) {
             tmpBridge = bridgeEdge1.edgeTailIndex;
             bridgeEdge2 = vertexArray[tmpBridge].next;
@@ -139,9 +139,9 @@ class Graph {
     }
 
     public String generateText(String text){
-        /*ç”Ÿæˆæ–°æ–‡æœ¬
-         *å½¢å¼å‚æ•°ï¼šç”¨æˆ·è¾“å…¥çš„Stringæ–‡æœ¬
-         * è¿”å›ï¼šæ–°æ–‡æœ¬çš„String
+        /*Éú³ÉĞÂÎÄ±¾
+         *ĞÎÊ½²ÎÊı£ºÓÃ»§ÊäÈëµÄStringÎÄ±¾
+         * ·µ»Ø£ºĞÂÎÄ±¾µÄString
          */
         String SEPARATOR=" |,|!|\\.|\\?|:|;|-|@";
         String[] textWords = text.split(SEPARATOR);
@@ -150,7 +150,7 @@ class Graph {
         StringBuilder result = new StringBuilder();
         for(int i=0;i<textWords.length-1;i++){
             result.append(textWords[i]+" ");
-            //ä¸¤ä¸ªå•è¯çš„æ¡¥æ¥è¯æŸ¥è¯¢
+            //Á½¸öµ¥´ÊµÄÇÅ½Ó´Ê²éÑ¯
             bridgeWords=bridgeWord(textWords[i],textWords[i+1]);
             if(bridgeWords==null){
                 continue;
@@ -158,7 +158,7 @@ class Graph {
             else{
                 if(bridgeWords[0]==null){
                     continue;
-                }
+                } 
                 bridgeWordsNum=0;
                 for(String str:bridgeWords){
                     if(str!=null){
@@ -167,7 +167,7 @@ class Graph {
                     }
                     break;
                 }
-                //éšæœºé€‰å–æ¡¥æ¥è¯è¿›è¡Œæ·»åŠ 
+                //Ëæ»úÑ¡È¡ÇÅ½Ó´Ê½øĞĞÌí¼Ó
                 result.append(bridgeWords[RandomNum.randomNum(1,bridgeWordsNum)-1]+" ");
             }
         }
@@ -176,14 +176,14 @@ class Graph {
     }
 
     public int[][] shortestPath(String word1,String word2){
-        /*æ±‚ä¸¤ä¸ªå•è¯çš„æœ€çŸ­è·¯å¾„
-         *å½¢å¼å‚æ•°ï¼šå•è¯1ï¼Œå•è¯2
-         * è¿”å›ï¼šDijkstraä¸­çš„Dist[]ï¼ˆè·ç¦»æ•°ç»„ï¼‰å’ŒpreNode[]ï¼ˆå‰é¡¶ç‚¹æ•°ç»„ï¼‰ä¸¤ä¸ªæ•°ç»„
-         * åˆ©ç”¨Dijkstraç®—æ³•è¿›è¡Œæœ€çŸ­è·¯å¾„çš„æ±‚è§£
+        /*ÇóÁ½¸öµ¥´ÊµÄ×î¶ÌÂ·¾¶
+         *ĞÎÊ½²ÎÊı£ºµ¥´Ê1£¬µ¥´Ê2
+         * ·µ»Ø£ºDijkstraÖĞµÄDist[]£¨¾àÀëÊı×é£©ºÍpreNode[]£¨Ç°¶¥µãÊı×é£©Á½¸öÊı×é
+         * ÀûÓÃDijkstraËã·¨½øĞĞ×î¶ÌÂ·¾¶µÄÇó½â
          */
         int MAX= 32676;
         int word1Index = -1, word2Index = -1;
-        //æ£€ç´¢å•è¯1å’Œå•è¯2
+        //¼ìË÷µ¥´Ê1ºÍµ¥´Ê2
         for (int i = 0; i < vertexNum; i++) {
             if (vertexArray[i].word.equals(word1)) {
                 word1Index = i;
@@ -198,7 +198,7 @@ class Graph {
         if(word1Index<0||word2Index<0){
             return null;
         }
-        //åˆ©ç”¨æœ€å°ä¼˜å…ˆé˜Ÿåˆ—è¿›è¡Œä¼˜åŒ–
+        //ÀûÓÃ×îĞ¡ÓÅÏÈ¶ÓÁĞ½øĞĞÓÅ»¯
         Queue<VertexDist> distQueue=new PriorityQueue<>(vertexNum,VertexDist.distComparator);
         int[] dist= new int[vertexNum];
         int[] preNode = new int[vertexNum];
@@ -225,7 +225,7 @@ class Graph {
                 curEdge=curEdge.next;
             }
         }
-        //Dist[]å’ŒpreNode[]åˆæˆä¸€ä¸ªäºŒç»´æ•°ç»„
+        //Dist[]ºÍpreNode[]ºÏ³ÉÒ»¸ö¶şÎ¬Êı×é
         int[][] rst=new int[2][vertexNum];
         for(int i=0;i<vertexNum;i++){
             rst[0][i]=dist[i];
@@ -235,13 +235,13 @@ class Graph {
     }
 
     public String randomGraph(){
-        /*éšæœºè·¯å¾„
-         *è¿”å›ï¼šæœ€ç»ˆå®Œå…¨çš„éšæœºè·¯å¾„String
+        /*Ëæ»úÂ·¾¶
+         *·µ»Ø£º×îÖÕÍêÈ«µÄËæ»úÂ·¾¶String
          */
         Scanner in=new Scanner(System.in);
         String input;
         do{
-            System.out.println("è¾“å…¥ 's' å¼€å§‹");
+            System.out.println("ÊäÈë 's' ¿ªÊ¼");
             input = in.next();
         } while(!input.equals("s"));
 
@@ -258,9 +258,9 @@ class Graph {
                 break;
             }
 
-            //éšæœºè·¯å¾„ç”Ÿæˆæ—¶çš„æ§åˆ¶
+            //Ëæ»úÂ·¾¶Éú³ÉÊ±µÄ¿ØÖÆ
             if(!input.equals("f")){
-                System.out.println("è¾“å…¥ 'n' æ¥å¾—åˆ°ä¸‹ä¸€ä¸ªå•è¯ or è¾“å…¥ 'f' æ¥è‡ªåŠ¨å®Œæˆéšæœºè·¯å¾„ or è¾“å…¥ 'c' æ¥å–æ¶ˆæ“ä½œ");
+                System.out.println("ÊäÈë 'n' À´µÃµ½ÏÂÒ»¸öµ¥´Ê or ÊäÈë 'f' À´×Ô¶¯Íê³ÉËæ»úÂ·¾¶ or ÊäÈë 'c' À´È¡Ïû²Ù×÷");
                 do{
                     input = in.next();
                 }while(!input.equals("n") && !input.equals("f") && !input.equals("c"));
@@ -282,7 +282,7 @@ class Graph {
             travelEdge[curIndex][nextIndex]=true;
             curIndex=nextIndex;
         }
-        System.out.println("\néšæœºè¡Œèµ°å·²ç»ç»“æŸ");
+        System.out.println("\nËæ»úĞĞ×ßÒÑ¾­½áÊø");
         return rst.toString();
     }
 }

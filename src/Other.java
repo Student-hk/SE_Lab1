@@ -2,10 +2,10 @@ import java.io.*;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Random;
-
+//lab3 change test04
 class RandomNum{
-    /*éšæœºå‡½æ•°
-     *æ–¹æ³•ï¼šç”Ÿæˆä¸€å®šèŒƒå›´çš„éšæœºæ•°int randomNum(int min,int max)
+    /*Ëæ»úº¯Êı
+     *·½·¨£ºÉú³ÉÒ»¶¨·¶Î§µÄËæ»úÊıint randomNum(int min,int max)
      */
     public static int randomNum(int min,int max){
         Random num=new Random();
@@ -15,13 +15,13 @@ class RandomNum{
 }
 
 class ReadFromFile{
-    /*æ–‡æœ¬è¯»å…¥
-     *æ–¹æ³•ï¼šè¯»å…¥æ–‡æœ¬String readFileByChars(String fileName)
+    /*ÎÄ±¾¶ÁÈë
+     *·½·¨£º¶ÁÈëÎÄ±¾String readFileByChars(String fileName)
      */
     public static String readFileByChars(String fileName){
-        /*æ–‡æœ¬è¯»å…¥
-         *å½¢å¼å‚æ•°ï¼šæ–‡ä»¶çš„ç»å¯¹è·¯å¾„String
-         * è¿”å›ï¼šä¸€ä¸ªæ–‡æœ¬çš„String
+        /*ÎÄ±¾¶ÁÈë
+         *ĞÎÊ½²ÎÊı£ºÎÄ¼şµÄ¾ø¶ÔÂ·¾¶String
+         * ·µ»Ø£ºÒ»¸öÎÄ±¾µÄString
          */
         StringBuilder dest = new StringBuilder();
         File file = new File(fileName);
@@ -94,8 +94,8 @@ class StringToGraph{
 
 class VertexDist{
     /*
-     *é¡¶ç‚¹è·ç¦»çš„ç±»
-     *æ–¹æ³•ï¼šæ„é€ ï¼›é¡¶ç‚¹è·ç¦»çš„æ¯”è¾ƒæ¥å£
+     *¶¥µã¾àÀëµÄÀà
+     *·½·¨£º¹¹Ôì£»¶¥µã¾àÀëµÄ±È½Ï½Ó¿Ú
      */
     public int index;
     public int dist;

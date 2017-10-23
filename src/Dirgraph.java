@@ -1,37 +1,39 @@
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
+//lab3 change test03
 class Dirgraph {
-    /*æœ‰å‘å›¾çš„ç±»
-     *å±æ€§ï¼šæœ‰å‘å›¾Graph graphInfo
-     *      æ–‡ä»¶ä¿å­˜è·¯å¾„String savepath
-     *      æ–‡ä»¶ä¿å­˜åç§°String fileName
-     *æ–¹æ³•ï¼šæ„é€ Dirgraph(Graph graph,String path,String name)
-     *      ç”Ÿæˆå¹¶ä¸”ä¿å­˜å›¾ç‰‡void genaPic()
-     */
-    public Graph graphInfo;
-    public String savepath;
-    public String fileName;
-    public Dirgraph(Graph graph,String path,String name){
-        /*
-         *å½¢å¼å‚æ•°ï¼šå›¾ï¼Œæ–‡ä»¶ä¿å­˜è·¯å¾„ï¼Œæ–‡ä»¶ä¿å­˜åç§°
-         */
-        graphInfo=graph;
-        savepath=path;
-        fileName=name;
-    }
-    public void genaPic(){
-        Graphviz gviz=new Graphviz(savepath,fileName);
-        AdjacentEdge curEdge;
-        StringBuilder line;
-        gviz.startGraph();
-        for(int i=0;i<graphInfo.vertexNum;i++){
-            curEdge=graphInfo.vertexArray[i].next;
-            for(int j=0;j<graphInfo.vertexArray[i].edgeNum;j++){
-                line=new StringBuilder();
-                line.append(graphInfo.vertexArray[i].word+"->"+graphInfo.vertexArray[curEdge.edgeTailIndex].word);
-                line.append(" [label=\""+curEdge.weight+"\"]");
+  /*ÓĞÏòÍ¼µÄÀà
+     *ÊôĞÔ£ºÓĞÏòÍ¼Graph graphInfo
+     *      ÎÄ¼ş±£´æÂ·¾¶String savepath
+     *      ÎÄ¼ş±£´æÃû³ÆString fileName
+     *·½·¨£º¹¹ÔìDirgraph(Graph graph,String path,String name)
+     *      Éú³É²¢ÇÒ±£´æÍ¼Æ¬void genaPic()
+   */
+  public Graph graphInfo;
+  public String savepath;
+  public String fileName;
+    
+  public Dirgraph(Graph graph,String path,String name) {
+    /*
+         *ĞÎÊ½²ÎÊı£ºÍ¼£¬ÎÄ¼ş±£´æÂ·¾¶£¬ÎÄ¼ş±£´æÃû³Æ
+    */
+    graphInfo = graph;
+    savepath = path;
+    fileName = name;
+  }
+  
+  public void genaPic() {
+    Graphviz gviz = new Graphviz(savepath,fileName);
+    AdjacentEdge curEdge;
+    StringBuilder line;
+    gviz.startGraph();
+    for (int i = 0;i < graphInfo.vertexNum;i++) {
+      curEdge = graphInfo.vertexArray[i].next;
+      for (int j = 0;j < graphInfo.vertexArray[i].edgeNum;j++) {
+        line = new StringBuilder();
+        line.append(graphInfo.vertexArray[i].word + "->" + graphInfo.vertexArray[curEdge.edgeTailIndex].word);
+        line.append(" [label=\""+curEdge.weight+"\"]");
                 gviz.addLn(line.toString());
                 curEdge=curEdge.next;
             }
@@ -122,8 +124,8 @@ class Dirgraph {
 class  Graphviz{
     private String runPath = "";    //"D:\\TestDel"
 
-    //  dotç¨‹åºçš„è·¯å¾„
-    private String dotPath = "D:\\WorkSpace\\SoftWare\\Graphviz2.38\\bin\\dot.exe";
+    //  dot³ÌĞòµÄÂ·¾¶
+    private String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
 
     private String runCmd="";
     private String gvFile="";
@@ -137,6 +139,8 @@ class  Graphviz{
         this.gvFile=fileName;
         this.genaPic=fileName;
     }
+    
+    
 
     public void genaCmd(){
         runCmd+=dotPath+" ";
@@ -195,6 +199,6 @@ class  Graphviz{
     }
 
     public void endGraph() {
-        gvText.append("}") ;
+    	gvText.append("}") ;
     }
 }

@@ -5,17 +5,18 @@ public class Main {
     private Graph graph;
     private String runPath;
     private String fileName;
+	//lab3 change test01
     public static void main(String[] args) throws InterruptedException {
         Main proG=new Main();
-        String sourceText=ReadFromFile.readFileByChars(args[0]);
+        String sourceText=ReadFromFile.readFileByChars("C:\\Users\\Alice\\Desktop\\Test.txt");
         //"D:\WorkSpace\Project\Java\SE_Lab1\out\production\SE_Lab1\test.txt"
 
         proG.graph=proG.createDirectedGraph(sourceText);
-        System.out.println("----------------æ–‡æœ¬è½¬æ¢ä¸ºæœ‰å‘å›¾-------------------");
+        System.out.println("----------------ÎÄ±¾×ª»»ÎªÓĞÏòÍ¼-------------------");
         Scanner in=new Scanner(System.in);
-        System.out.println("è¯·è¾“å…¥å›¾ç‰‡ä¿å­˜çš„ç›®å½•è·¯å¾„");
+        System.out.println("ÇëÊäÈëÍ¼Æ¬±£´æµÄÄ¿Â¼Â·¾¶");
         proG.runPath=in.next();//D:\TestDel
-        System.out.println("è¯·è¾“å…¥ä¿å­˜çš„æ–‡ä»¶å");
+        System.out.println("ÇëÊäÈë±£´æµÄÎÄ¼şÃû");
         proG.fileName=in.next();
         //proG.showDirectedGraph(proG.graph);
         proG.userCommand();
@@ -127,7 +128,7 @@ public class Main {
         for(int i=0;i<graph.vertexNum;i++){
             if(i!=wordIndex){
                 do {
-                    System.out.println("è¯·è¾“å…¥â€˜n'æ¥å¾—åˆ°ä¸‹ä¸€æ¡æœ€çŸ­è·¯å¾„ or è¾“å…¥'c'æ¥æ’¤é”€æ“ä½œ");
+                    System.out.println("ÇëÊäÈë¡®n'À´µÃµ½ÏÂÒ»Ìõ×î¶ÌÂ·¾¶ or ÊäÈë'c'À´³·Ïú²Ù×÷");
                     tmp = in.next();
                 }while(!tmp.equals("n") && !tmp.equals("c"));
             if(tmp.equals("c")) {
@@ -144,52 +145,52 @@ public class Main {
         String word1,word2;
         String Text;
         do{
-            System.out.println("\n*******è¯·é€‰æ‹©åŠŸèƒ½ï¼ˆè¾“å…¥é€‰é¡¹çš„å­—æ¯åºå·å³å¯ï¼‰*******");
-            System.out.println("a.å±•ç¤ºæ–‡æœ¬ç”Ÿæˆçš„æœ‰å‘å›¾");
-            System.out.println("b.æŸ¥è¯¢æ¡¥æ¥è¯");
-            System.out.println("c.æ ¹æ®bridge wordç”Ÿæˆæ–°æ–‡æœ¬");
-            System.out.println("d.è®¡ç®—word1å’Œword2ä¹‹é—´çš„æœ€çŸ­è·¯å¾„");
-            System.out.println("e.éšæœºæ¸¸èµ°");
-            System.out.println("f.è®¡ç®—ä¸€ä¸ªwordä¸æ‰€æœ‰å…¶ä»–å•è¯æœ€çŸ­çš„è·¯å¾„");
-            System.out.println("q.é€€å‡º");
+            System.out.println("\n*******ÇëÑ¡Ôñ¹¦ÄÜ£¨ÊäÈëÑ¡ÏîµÄ×ÖÄ¸ĞòºÅ¼´¿É£©*******");
+            System.out.println("a.Õ¹Ê¾ÎÄ±¾Éú³ÉµÄÓĞÏòÍ¼");
+            System.out.println("b.²éÑ¯ÇÅ½Ó´Ê");
+            System.out.println("c.¸ù¾İbridge wordÉú³ÉĞÂÎÄ±¾");
+            System.out.println("d.¼ÆËãword1ºÍword2Ö®¼äµÄ×î¶ÌÂ·¾¶");
+            System.out.println("e.Ëæ»úÓÎ×ß");
+            System.out.println("f.¼ÆËãÒ»¸öwordÓëËùÓĞÆäËûµ¥´Ê×î¶ÌµÄÂ·¾¶");
+            System.out.println("q.ÍË³ö");
             System.out.println("**************************************************\n");
             enter=in.next();
             if(enter.equals("a")){
                 showDirectedGraph(graph);
             }
             else if(enter.equals("b")){
-                System.out.println("è¯·ä¾æ¬¡è¾“å…¥word1å’Œword2ï¼Œç”¨å›è½¦é—´éš”");
+                System.out.println("ÇëÒÀ´ÎÊäÈëword1ºÍword2£¬ÓÃ»Ø³µ¼ä¸ô");
                 word1=in.next();
                 word2=in.next();
                 System.out.println(queryBridgeWords(graph,word1,word2));
             }
             else if(enter.equals("c")){
-                System.out.println("è¯·è¾“å…¥ä½ çš„æ–‡æœ¬");
+                System.out.println("ÇëÊäÈëÄãµÄÎÄ±¾");
                 in.nextLine();
                 Text=in.nextLine();
                 System.out.println(generateNewText(graph,Text));
             }
             else if(enter.equals("d")){
-                System.out.println("è¯·ä¾æ¬¡è¾“å…¥word1å’Œword2ï¼Œç”¨å›è½¦é—´éš”");
+                System.out.println("ÇëÒÀ´ÎÊäÈëword1ºÍword2£¬ÓÃ»Ø³µ¼ä¸ô");
                 word1=in.next();
                 word2=in.next();
                 System.out.println(calcShortestPath(graph,word1,word2));
             }
             else if(enter.equals("e")){
-                System.out.println("éšæœºæ¸¸èµ°");
+                System.out.println("Ëæ»úÓÎ×ß");
                 randomWalk(graph);
             }
             else if(enter.equals("f")){
-                System.out.println("è¯·è¾“å…¥word1");
+                System.out.println("ÇëÊäÈëword1");
                 word1=in.next();
                 shortestPath(graph,word1);
             }
             else if(enter.equals("q")){
-                System.out.println("ç¨‹åºå·²ç»é€€å‡º");
+                System.out.println("³ÌĞòÒÑ¾­ÍË³ö");
                 System.exit(0);
             }
             else{
-                System.out.println("è¯·è¾“å…¥è®¸å¯çš„å­—æ¯åºå·");
+                System.out.println("ÇëÊäÈëĞí¿ÉµÄ×ÖÄ¸ĞòºÅ");
             }
         } while(true);
     }
