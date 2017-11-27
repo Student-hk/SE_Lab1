@@ -110,3 +110,84 @@ class VertexDist{
         }
     };
 }
+
+class  Graphviz{
+    private String runPath = "";    //"D:\\TestDel"
+
+    //  dot程序的路径
+    //private String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
+    private String dotPath = "E:\\selfprogram\\Graphviz2.38\\bin\\dot.exe";
+
+    private String runCmd="";
+    private String gvFile="";
+    private String genaPic="";
+    private StringBuilder gvText = new StringBuilder();
+
+    Runtime runtime=Runtime.getRuntime();
+
+    public Graphviz(String path,String fileName) {
+        this.runPath=path;
+        this.gvFile=fileName;
+        this.genaPic=fileName;
+    }
+
+    public void genaCmd(){
+        runCmd+=dotPath+" ";
+        runCmd+=runPath;
+        runCmd+="\\"+gvFile+".txt ";
+        runCmd+="-T png ";
+        runCmd+="-o ";
+        runCmd+=runPath;
+        runCmd+="\\"+genaPic+".png";
+        //System.out.println(runCmd);
+    }
+
+    public void run() {
+        File file=new File(runPath);
+        if(!file.exists())
+        {
+            file.mkdirs();
+        }
+        writeGraphToFile(gvText.toString(), runPath);
+        genaCmd();
+        try {
+            runtime.exec(runCmd);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void writeGraphToFile(String dotText, String dirName) {
+        try {
+            File file = new File(dirName+"\\"+gvFile+".txt");
+            if(!file.exists()){
+                file.createNewFile();
+            }
+            FileOutputStream fos = new FileOutputStream(file);
+            fos.write(dotText.getBytes());
+            fos.close();
+        } catch (java.io.IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+
+    public void add(String line) {
+        gvText.append("\t"+line);
+    }
+
+    public void addLn(String line) {
+        gvText.append("\t"+line + "\n");
+    }
+
+    public void addLn() {
+        gvText.append('\n');
+    }
+
+    public void startGraph() {
+        gvText.append("digraph G {\n") ;
+    }
+
+    public void endGraph() {
+        gvText.append("}") ;
+    }
+}

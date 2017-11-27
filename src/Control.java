@@ -1,35 +1,72 @@
-import java.awt.*;
 import java.util.Scanner;
 
-public class Main {
-    private Graph graph;
-    private String runPath;
+class Control{
+	private Graph graph;
+	private String runPath;
     private String fileName;
-    public static void main(String[] args) throws InterruptedException {
-        Main proG=new Main();
-        String sourceText=ReadFromFile.readFileByChars(args[0]);
+	
+	Control(String runPath,String fileName){
+		//String sourceText=ReadFromFile.readFileByChars("C:\\Users\\Tom\\Desktop\\Code\\Lab7\\src\\Lab6_w_test.txt");
+		String sourceText=ReadFromFile.readFileByChars("D:\\1150310620\\软件工程\\实验\\Lab7\\src\\Lab6_w_test.txt");
         //"D:\WorkSpace\Project\Java\SE_Lab1\out\production\SE_Lab1\test.txt"
-
-        proG.graph=proG.createDirectedGraph(sourceText);
-        System.out.println("----------------文本转换为有向图-------------------");
-        Scanner in=new Scanner(System.in);
-        System.out.println("请输入图片保存的目录路径");
-        proG.runPath=in.next();//D:\TestDel
-        System.out.println("请输入保存的文件名");
-        proG.fileName=in.next();
-        //proG.showDirectedGraph(proG.graph);
-        proG.userCommand();
-    }
-
-    public Graph createDirectedGraph(String text){
+        this.graph=this.createDirectedGraph(sourceText);
+        this.runPath=runPath;
+        this.fileName=fileName;
+	}
+	
+	public void action(String enter) throws InterruptedException {
+		Scanner in = new Scanner(System.in);
+		String word1,word2;
+        String Text;
+		if(enter.equals("a")){
+            showDirectedGraph(graph);
+        }
+        else if(enter.equals("b")){
+            System.out.println("请依次输入word1和word2，用回车间隔");
+            word1=in.next();
+            word2=in.next();
+            System.out.println(queryBridgeWords(graph,word1,word2));
+        }
+        else if(enter.equals("c")){
+            System.out.println("请输入你的文本");
+            Text=in.nextLine();
+            System.out.println(generateNewText(graph,Text));
+        }
+        else if(enter.equals("d")){
+            System.out.println("请依次输入word1和word2，用回车间隔");
+            word1=in.next();
+            word2=in.next();
+            System.out.println(calcShortestPath(graph,word1,word2));
+        }
+        else if(enter.equals("e")){
+            System.out.println("随机游走");
+            randomWalk(graph);
+        }
+        else if(enter.equals("f")){
+            System.out.println("请输入word1");
+            word1=in.next();
+            shortestPath(graph,word1);
+        }
+        else if(enter.equals("q")){
+            System.out.println("程序已经退出");
+            System.exit(0);
+        }
+        else{
+            System.out.println("请输入许可的字母序号");
+        }
+	}
+	
+	public Graph createDirectedGraph(String text){
         return StringToGraph.getGraph(text);
     }
+	
     public void showDirectedGraph(Graph G) throws InterruptedException {
         Dirgraph gv = new Dirgraph(G,runPath,fileName);
         gv.genaPic();
         Thread.sleep(500);
         PicView.run(runPath,fileName);
     }
+    
     public String queryBridgeWords(Graph G,String word1,String word2){
         String[] result=G.bridgeWord(word1,word2);
         if(result==null){
@@ -105,10 +142,10 @@ public class Main {
         PicView.run(runPath,word1+"ShortestPathTo"+word2);
         return result;
     }
+    
     public String randomWalk(Graph G){
         return graph.randomGraph();
     }
-
 
     public void shortestPath(Graph G,String word) throws InterruptedException {
         Scanner in=new Scanner(System.in);
@@ -136,61 +173,5 @@ public class Main {
                 System.out.println(calcShortestPath(graph,word,graph.vertexArray[i].word));
             }
         }
-    }
-
-    public void userCommand() throws InterruptedException {
-        Scanner in = new Scanner(System.in);
-        String enter;
-        String word1,word2;
-        String Text;
-        do{
-            System.out.println("\n*******请选择功能（输入选项的字母序号即可）*******");
-            System.out.println("a.展示文本生成的有向图");
-            System.out.println("b.查询桥接词");
-            System.out.println("c.根据bridge word生成新文本");
-            System.out.println("d.计算word1和word2之间的最短路径");
-            System.out.println("e.随机游走");
-            System.out.println("f.计算一个word与所有其他单词最短的路径");
-            System.out.println("q.退出");
-            System.out.println("**************************************************\n");
-            enter=in.next();
-            if(enter.equals("a")){
-                showDirectedGraph(graph);
-            }
-            else if(enter.equals("b")){
-                System.out.println("请依次输入word1和word2，用回车间隔");
-                word1=in.next();
-                word2=in.next();
-                System.out.println(queryBridgeWords(graph,word1,word2));
-            }
-            else if(enter.equals("c")){
-                System.out.println("请输入你的文本");
-                in.nextLine();
-                Text=in.nextLine();
-                System.out.println(generateNewText(graph,Text));
-            }
-            else if(enter.equals("d")){
-                System.out.println("请依次输入word1和word2，用回车间隔");
-                word1=in.next();
-                word2=in.next();
-                System.out.println(calcShortestPath(graph,word1,word2));
-            }
-            else if(enter.equals("e")){
-                System.out.println("随机游走");
-                randomWalk(graph);
-            }
-            else if(enter.equals("f")){
-                System.out.println("请输入word1");
-                word1=in.next();
-                shortestPath(graph,word1);
-            }
-            else if(enter.equals("q")){
-                System.out.println("程序已经退出");
-                System.exit(0);
-            }
-            else{
-                System.out.println("请输入许可的字母序号");
-            }
-        } while(true);
     }
 }

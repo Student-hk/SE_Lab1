@@ -12,6 +12,7 @@ class AdjacentEdge{
     public AdjacentEdge next;
 }
 
+
 class Vertex{
     /*有向图的顶点
      *属性：顶点单词，出度边的数目，下一条边的引用
